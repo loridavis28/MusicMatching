@@ -1,0 +1,8 @@
+#Files from Audacity
+*.au
+*.aup
+
+#Folders
+Sounds/AlbinoniAdagio/
+Sounds/Beethoven9/
+Sounds/DebussyClair/
