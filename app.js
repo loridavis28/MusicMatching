@@ -5,7 +5,6 @@ var currentSeries = [];
 
 
 shuffleAssignment();
-//$("h1").addClass("matchFound");
 
 //Listen for clicks and play the sound.
 $(".btn").click(function() {
@@ -20,9 +19,8 @@ $(".btn").click(function() {
     currentSeries[0] = buttonAssignment[(userChosenButton - 1)];
   }
   if (currentSeries.length == 2) {
-    checkAnswer();
+    checkAnswer(userChosenButton);
   }
-  alert(currentSeries);
 })
 
 //Set the randomization.
@@ -51,8 +49,15 @@ function playSound(name) {
 
 
 //Check the answer.
-function checkAnswer() {
+function checkAnswer(selectedButton) {
   if (currentSeries[0] == currentSeries[1]) {
     alert("You found a match!");
+    var idSelectedButton;
+    for (var i = 0; i < 6; i++) {
+      if (buttonAssignment[i] == currentSeries[0]) {
+        idSelectedButton = "#" + (i+1);
+        $(idSelectedButton).addClass("matchFound");
+      }
+    }
   }
 }
