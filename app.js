@@ -55,8 +55,15 @@ function checkAnswer(selectedButton) {
     var idSelectedButton;
     for (var i = 0; i < 6; i++) {
       if (buttonAssignment[i] == currentSeries[0]) {
-        idSelectedButton = "#" + (i+1);
+        idSelectedButton = "#" + (i + 1);
         $(idSelectedButton).addClass("matchFound");
+        if (currentSeries[0] == 0) {
+          $(".clip1").removeClass("matchList");
+        } else if (currentSeries[0] == 1) {
+          $(".clip2").removeClass("matchList");
+        } else if (currentSeries[0] == 2) {
+          $(".clip3").removeClass("matchList");
+        }
       }
     }
   }

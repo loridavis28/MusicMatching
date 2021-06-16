@@ -1,3 +1,7 @@
 .matchFound {
   visibility: hidden;
 }
+
+.matchList {
+  display: none;
+}
