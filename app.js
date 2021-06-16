@@ -2,6 +2,7 @@ var soundFiles = ["Beethoven9", "DebussyClair", "AlbinoniAdagio"];
 var buttonAssignment = [0, 0, 1, 1, 2, 2];
 var audio = new Audio("");
 var currentSeries = [];
+var lastButton;
 
 
 shuffleAssignment();
@@ -18,10 +19,21 @@ $(".btn").click(function() {
     currentSeries = [];
     currentSeries[0] = buttonAssignment[(userChosenButton - 1)];
   }
+  animatePress(this, currentSeries.length);
   if (currentSeries.length == 2) {
     checkAnswer(userChosenButton);
   }
 })
+
+//Highlight selected button. Leave it on for the second press. Remove all highlight after second press.
+function animatePress(currentButton, firstOrSecond) {
+  $(currentButton).addClass("pressed");
+  if (firstOrSecond == 2) {
+    setTimeout(function() {
+      $("button").removeClass("pressed");
+    }, 1000);
+  }
+}
 
 //Set the randomization.
 function shuffleAssignment() {
@@ -48,23 +60,24 @@ function playSound(name) {
 }
 
 
-//Check the answer.
+//Check the answer. Remove from options if correct.
 function checkAnswer(selectedButton) {
   if (currentSeries[0] == currentSeries[1]) {
-    alert("You found a match!");
-    var idSelectedButton;
-    for (var i = 0; i < 6; i++) {
-      if (buttonAssignment[i] == currentSeries[0]) {
-        idSelectedButton = "#" + (i + 1);
-        $(idSelectedButton).addClass("matchFound");
-        if (currentSeries[0] == 0) {
-          $(".clip1").removeClass("matchList");
-        } else if (currentSeries[0] == 1) {
-          $(".clip2").removeClass("matchList");
-        } else if (currentSeries[0] == 2) {
-          $(".clip3").removeClass("matchList");
+    setTimeout(function() {
+      var idSelectedButton;
+      for (var i = 0; i < 6; i++) {
+        if (buttonAssignment[i] == currentSeries[0]) {
+          idSelectedButton = "#" + (i + 1);
+          $(idSelectedButton).addClass("matchFound");
+          if (currentSeries[0] == 0) {
+            $(".clip1").removeClass("matchList");
+          } else if (currentSeries[0] == 1) {
+            $(".clip2").removeClass("matchList");
+          } else if (currentSeries[0] == 2) {
+            $(".clip3").removeClass("matchList");
+          }
         }
       }
-    }
+    }, 1000);
   }
 }
