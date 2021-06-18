@@ -3,6 +3,7 @@ var buttonAssignment = [0, 0, 1, 1, 2, 2];
 var audio = new Audio("");
 var currentSeries = [];
 var lastButton;
+var totalFound = 0;
 
 
 shuffleAssignment();
@@ -62,7 +63,9 @@ function playSound(name) {
 
 //Check the answer. Remove from options if correct.
 function checkAnswer(selectedButton) {
+  var status = false;
   if (currentSeries[0] == currentSeries[1]) {
+    totalFound++;
     setTimeout(function() {
       var idSelectedButton;
       for (var i = 0; i < 6; i++) {
@@ -79,5 +82,20 @@ function checkAnswer(selectedButton) {
         }
       }
     }, 1000);
+    checkIfDone();
   }
 }
+
+//Shows the play again button if all matches have been found.
+function checkIfDone() {
+  console.log(totalFound);
+  if (totalFound == 3) {
+    $(".reload").removeClass("matchList");
+  }
+}
+
+
+//Reload page to play again
+$(".reload").click(function() {
+  location.reload();
+})
