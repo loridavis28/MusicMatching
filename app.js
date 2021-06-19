@@ -1,5 +1,5 @@
-var soundFiles = ["Beethoven9", "DebussyClair", "AlbinoniAdagio"];
-var buttonAssignment = [0, 0, 1, 1, 2, 2];
+var soundFiles = ["Beethoven9", "DebussyClair", "AlbinoniAdagio", "BachToccata", "Dvorak9", "Mozart40", "OrffCarmina", "WagnerValkyrie"];
+var buttonAssignment = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
 var audio = new Audio("");
 var currentSeries = [];
 var lastButton;
@@ -43,7 +43,7 @@ function shuffleAssignment() {
   var i = buttonAssignment.length;
 
   while (i--) {
-    randomNumber = Math.floor(Math.random() * 3);
+    randomNumber = Math.floor(Math.random() * 8);
     temp = buttonAssignment[randomNumber];
     buttonAssignment[randomNumber] = buttonAssignment[i];
     buttonAssignment[i] = temp;
@@ -68,7 +68,7 @@ function checkAnswer(selectedButton) {
     totalFound++;
     setTimeout(function() {
       var idSelectedButton;
-      for (var i = 0; i < 6; i++) {
+      for (var i = 0; i < 16; i++) {
         if (buttonAssignment[i] == currentSeries[0]) {
           idSelectedButton = "#" + (i + 1);
           $(idSelectedButton).addClass("matchFound");
@@ -89,7 +89,7 @@ function checkAnswer(selectedButton) {
 //Shows the play again button if all matches have been found.
 function checkIfDone() {
   console.log(totalFound);
-  if (totalFound == 3) {
+  if (totalFound == 8) {
     $(".reload").removeClass("matchList");
   }
 }

@@ -10,3 +10,8 @@
   box-shadow: 0 0 20px white;
   background-color: grey;
 }
+
+.row {
+  margin-left: 20%;
+  margin-right: 20%;
+}
