@@ -78,6 +78,16 @@ function checkAnswer(selectedButton) {
             $(".clip2").removeClass("matchList");
           } else if (currentSeries[0] == 2) {
             $(".clip3").removeClass("matchList");
+          } else if (currentSeries[0] == 3) {
+            $(".clip4").removeClass("matchList");
+          } else if (currentSeries[0] == 4) {
+            $(".clip5").removeClass("matchList");
+          } else if (currentSeries[0] == 5) {
+            $(".clip6").removeClass("matchList");
+          } else if (currentSeries[0] == 6) {
+            $(".clip7").removeClass("matchList");
+          } else if (currentSeries[0] == 7) {
+            $(".clip8").removeClass("matchList");
           }
         }
       }
@@ -88,9 +98,9 @@ function checkAnswer(selectedButton) {
 
 //Shows the play again button if all matches have been found.
 function checkIfDone() {
-  console.log(totalFound);
   if (totalFound == 8) {
     $(".reload").removeClass("matchList");
+    $("#grid").addClass("matchList");
   }
 }
 
